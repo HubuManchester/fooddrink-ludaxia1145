@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.SettingsPage"
+             Title="Settings">
+    <!-- Main scrollable container -->
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{AppThemeBinding Light=#FFF5F0, Dark=#130F0C}" Offset="0.0" />
+                <GradientStop Color="{AppThemeBinding Light=#FFFBF8, Dark=#0F1711}" Offset="1.0" />
+            </LinearGradientBrush>
+        </ScrollView.Background>
+
+        <VerticalStackLayout Padding="22" Spacing="16">
+            <!-- Header section -->
+            <Border StrokeThickness="0" Padding="18" BackgroundColor="{AppThemeBinding Light=#FFFFFE, Dark=#1A1712}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Accessibility settings"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#3A2518, Dark=#FFF2DF}"
+                           SemanticProperties.HeadingLevel="Level1" />
+                    <Label Text="Large text takes effect immediately and remains active when switching pages."
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light#8B6D55, Dark=#D8C4AC}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Settings controls section -->
+            <Border StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light=#EDCBB8, Dark=#3E3023}"
+                    BackgroundColor="{AppThemeBinding Light#FFFFFE, Dark=#1A1712}"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="18">
+                    <!-- Theme selection -->
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+                        <Label Text="Theme mode"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light#E55031, Dark=#FF9C7B}" />
+                        <Picker x:Name="ThemePicker"
+                                Grid.Row="1"
+                                Title="Choose app theme"
+                                FontSize="13"
+                                SelectedIndexChanged="OnThemeChanged"
+                                SemanticProperties.Hint="Switch between system, light, and dark theme">
+                            <Picker.Items>
+                                <x:String>Use system theme</x:String>
+                                <x:String>Light theme</x:String>
+                                <x:String>Dark theme</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="{AppThemeBinding Light#EDCBB8, Dark=#3E3023}" />
+
+                    <!-- Large text toggle -->
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Large text mode"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light#35845A, Dark#8CE6A1}" />
+                            <Label Text="Increase text size for accessibility demonstration."
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light#8B6D55, Dark#D8C4AC}" />
+                        </VerticalStackLayout>
+                        <Switch x:Name="LargeTextSwitch"
+                                Grid.Column="1"
+                                Toggled="OnLargeTextToggled"
+                                SemanticProperties.Hint="Increase text size across the current session" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=#FFF0C9, Dark=#312316}"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="LargeTextPreviewTitle"
+                           Text="Large text preview"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#B85517, Dark=#FFD18E}" />
+                    <Label x:Name="LargeTextPreviewBody"
+                           Text="When enabled, this text and the rest of the page become visibly larger."
+                           FontSize="15"
+                           TextColor="{AppThemeBinding Light=#6E5A47, Dark=#D8C4AC}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="SettingsStatusLabel"
+                   Text="Settings ready."
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Light=#D9472B, Dark=#FFB15D}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
